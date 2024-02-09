@@ -74,7 +74,7 @@ class TicTacToe
   end
 
   def print_columns
-    print '   '
+    print "\n   "
     @columns.each { |column| print "|  #{column}  " }
     puts '|'
   end
@@ -150,7 +150,7 @@ class Player
   end
 
   def enter_choice
-    puts "#{name} enter your next move:"
+    puts "\n#{name} enter your next move:"
     gets.chomp
   end
 end
@@ -168,7 +168,7 @@ class GameManager
   end
 
   def play_games
-    puts "Welcome to this Tic Tac Toe game!\n\n"
+    puts "\nWelcome to this Tic Tac Toe game!\n\n"
 
     loop do
       play_game
@@ -213,12 +213,12 @@ class GameManager
 
   def game_over?(player)
     if @game.check_winner?(player.game_mark)
-      puts "Game over, #{player.name} has won the game!"
+      puts "\nGame over, #{player.name} has won the game!"
       return true
     end
 
     unless @game.more_choices_remaining?
-      puts 'Game over, the game is a tie'
+      puts "\nGame over, the game is a tie"
       return true
     end
 
