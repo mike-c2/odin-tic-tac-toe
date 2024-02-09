@@ -1,4 +1,4 @@
-# odin-tic-tac-toe
+# Tic Tac Toe Game
 
 This is a simple, text-based, Tic Tac Toe game that was made as part of [The Odin Project](https://www.theodinproject.com). This project is written in Ruby.
 
