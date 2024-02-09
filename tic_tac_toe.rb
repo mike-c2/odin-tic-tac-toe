@@ -159,4 +159,72 @@ end
 # This class runs the actual Tic Tac Toe
 # game.
 class GameManager
+  def initialize(player_one_name, player_two_name)
+    @players = []
+    @players.push(Player.new(player_one_name, 'X'))
+    @players.push(Player.new(player_two_name, 'O'))
+
+    @game = TicTacToe.new
+  end
+
+  def play_games
+    puts "Welcome to this Tic Tac Toe game!\n\n"
+
+    loop do
+      play_game
+
+      break unless play_another_game?
+
+      @game.new_game
+    end
+  end
+
+  def play_game
+    current_player = 0
+
+    loop do
+      @game.print_game
+      enter_player_choice(@players[current_player])
+
+      break if game_over?(@players[current_player])
+
+      current_player = (current_player + 1) % @players.length
+    end
+
+    @game.print_game
+  end
+
+  def play_another_game?
+    puts "\nWould you like to play another game of Tic Tac Toe? Enter 'y' or 'n':"
+
+    loop do
+      response = gets.chomp.downcase
+
+      return false if response == 'n'
+      return true if response == 'y'
+
+      puts "Your response is not valid, enter either 'y' or 'n':"
+    end
+  end
+
+  def enter_player_choice(player)
+    puts 'Selection entered is not valid. ' until @game.play?(player.game_mark, player.enter_choice)
+  end
+
+  def game_over?(player)
+    if @game.check_winner?(player.game_mark)
+      puts "Game over, #{player.name} has won the game!"
+      return true
+    end
+
+    unless @game.more_choices_remaining?
+      puts 'Game over, the game is a tie'
+      return true
+    end
+
+    false
+  end
 end
+
+game_manager = GameManager.new('Player 1', 'Player 2')
+game_manager.play_games
