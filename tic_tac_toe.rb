@@ -149,10 +149,6 @@ class Player
     @game_mark = game_mark
   end
 
-  # Prompts the player to enter a selection,
-  # which is then returned.
-  #
-  # @return [String] Input entered by the player
   def enter_choice
     puts "#{name} enter your next move:"
     gets.chomp
