@@ -41,6 +41,13 @@ class TicTacToe
     true
   end
 
+  def check_winner?(game_token)
+    check_horizontal_win?(game_token) ||
+      check_vertical_win?(game_token) ||
+      check_down_diagonal_win?(game_token) ||
+      check_up_diagonal_win?(game_token)
+  end
+
   def more_choices_remaining?
     !@valid_choices.empty?
   end
@@ -88,6 +95,46 @@ class TicTacToe
       puts "\n#{horizontal_line}"
     end
   end
+
+  def check_horizontal_win?(game_mark)
+    (0...GRID_SIZE).each do |row|
+      return true if @grid[row].count(game_mark) == GRID_SIZE
+    end
+
+    false
+  end
+
+  def check_vertical_win?(game_mark)
+    (0...GRID_SIZE).each do |column|
+      is_win = true
+
+      (0...GRID_SIZE).each do |row|
+        is_win = false unless @grid[row][column] == game_mark
+      end
+
+      return true if is_win
+    end
+
+    false
+  end
+
+  # Checking from top-left to the bottom-right on grid
+  def check_down_diagonal_win?(game_mark)
+    (0...GRID_SIZE).each do |index|
+      return false unless @grid[index][index] == game_mark
+    end
+
+    true
+  end
+
+  # Checking from bottom-left to the top-right on grid
+  def check_up_diagonal_win?(game_mark)
+    (0...GRID_SIZE).each do |index|
+      return false unless @grid[index][GRID_SIZE - index - 1] == game_mark
+    end
+
+    true
+  end
 end
 
 ##
@@ -116,13 +163,4 @@ end
 # This class runs the actual Tic Tac Toe
 # game.
 class GameManager
-end
-
-mike = TicTacToe.new
-
-10.times do
-  puts 'Enter something'
-  choice = gets.chomp
-  puts mike.play?('X', choice)
-  mike.print_game
 end
