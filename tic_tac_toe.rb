@@ -6,17 +6,17 @@ class TicTacToe
   GRID_SIZE = 3
 
   def initialize
-    @columns = []
+    @column_headers = []
     last_column = ('A'.ord + GRID_SIZE - 1).chr
 
-    ('A'..last_column).each do |column|
-      @columns.push(column)
+    ('A'..last_column).each do |column_header|
+      @column_headers.push(column_header)
     end
 
-    @rows = []
+    @rows_headers = []
 
-    (1..GRID_SIZE).each do |row|
-      @rows.push(row.to_s)
+    (1..GRID_SIZE).each do |row_header|
+      @rows_headers.push(row_header.to_s)
     end
 
     new_game
@@ -33,8 +33,8 @@ class TicTacToe
 
     @valid_choices.delete(choice)
 
-    column = @columns.find_index(choice[0])
-    row = @rows.find_index(choice[1])
+    column = @column_headers.find_index(choice[0])
+    row = @rows_headers.find_index(choice[1])
 
     @grid[row][column] = game_mark
 
@@ -66,8 +66,8 @@ class TicTacToe
   def reset_valid_choices
     @valid_choices = []
 
-    @columns.each do |column|
-      @rows.each do |row|
+    @column_headers.each do |column|
+      @rows_headers.each do |row|
         @valid_choices.push(column + row)
       end
     end
@@ -75,7 +75,7 @@ class TicTacToe
 
   def print_columns
     print "\n   "
-    @columns.each { |column| print "|  #{column}  " }
+    @column_headers.each { |column| print "|  #{column}  " }
     puts '|'
   end
 
@@ -86,7 +86,7 @@ class TicTacToe
     puts horizontal_line
 
     (0...GRID_SIZE).each do |row|
-      print " #{@rows[row]} |"
+      print " #{@rows_headers[row]} |"
 
       (0...GRID_SIZE).each do |column|
         print "  #{@grid[row][column]}  |"
