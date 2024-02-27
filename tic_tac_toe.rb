@@ -41,11 +41,11 @@ class TicTacToe
     true
   end
 
-  def winner?(game_token)
-    check_horizontal_win?(game_token) ||
-      check_vertical_win?(game_token) ||
-      check_down_diagonal_win?(game_token) ||
-      check_up_diagonal_win?(game_token)
+  def winner?(game_mark)
+    check_horizontal_win?(game_mark) ||
+      check_vertical_win?(game_mark) ||
+      check_down_diagonal_win?(game_mark) ||
+      check_up_diagonal_win?(game_mark)
   end
 
   def more_choices_remaining?
