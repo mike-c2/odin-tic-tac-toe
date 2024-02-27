@@ -226,5 +226,5 @@ class GameManager
   end
 end
 
-game_manager = GameManager.new('Player 1', 'Player 2')
-game_manager.play_games
+# game_manager = GameManager.new('Player 1', 'Player 2')
+# game_manager.play_games
