@@ -41,7 +41,7 @@ class TicTacToe
     true
   end
 
-  def check_winner?(game_token)
+  def winner?(game_token)
     check_horizontal_win?(game_token) ||
       check_vertical_win?(game_token) ||
       check_down_diagonal_win?(game_token) ||
@@ -212,7 +212,7 @@ class GameManager
   end
 
   def game_over?(player)
-    if @game.check_winner?(player.game_mark)
+    if @game.winner?(player.game_mark)
       puts "\nGame over, #{player.name} has won the game!"
       return true
     end
