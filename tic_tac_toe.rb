@@ -27,7 +27,7 @@ class TicTacToe
     reset_valid_choices
   end
 
-  def play?(game_mark, choice)
+  def played?(game_mark, choice)
     choice = choice.upcase
     return false unless @valid_choices.include?(choice)
 
@@ -208,7 +208,7 @@ class GameManager
   end
 
   def enter_player_choice(player)
-    puts 'Selection entered is not valid. ' until @game.play?(player.game_mark, player.enter_choice)
+    puts 'Selection entered is not valid. ' until @game.played?(player.game_mark, player.enter_choice)
   end
 
   def game_over?(player)
