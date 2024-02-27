@@ -42,9 +42,9 @@ describe TicTacToe do
     end
   end
 
-  let(:game_mark) { 'X' }
-
   describe '#played?' do
+    let(:game_mark) { 'X' }
+
     context 'when given a valid input as argument' do
       before do
         valid_choices = %w[A1 A2 A3 B1 B2 B3]
