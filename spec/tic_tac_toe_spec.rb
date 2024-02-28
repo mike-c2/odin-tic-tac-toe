@@ -69,4 +69,150 @@ describe TicTacToe do
       end
     end
   end
+
+  describe '#winner?' do
+    context 'when there is no winning pattern present' do
+      let(:grid) do
+        [['X', ' ', 'O'],
+         ['O', 'X', ' '],
+         [' ', ' ', ' ']]
+      end
+
+      before do
+        game.instance_variable_set(:@grid, grid)
+      end
+
+      it 'returns false' do
+        expect(game).not_to be_winner('X')
+      end
+    end
+
+    context 'when the top row has a winning pattern' do
+      let(:grid) do
+        [['O', 'O', 'O'],
+         ['O', 'X', 'X'],
+         ['X', ' ', 'X']]
+      end
+
+      before do
+        game.instance_variable_set(:@grid, grid)
+      end
+
+      it 'returns true' do
+        expect(game).to be_winner('O')
+      end
+    end
+
+    context 'when the middle row has a winning pattern' do
+      let(:grid) do
+        [['O', 'O', ' '],
+         ['X', 'X', 'X'],
+         [' ', ' ', 'O']]
+      end
+
+      before do
+        game.instance_variable_set(:@grid, grid)
+      end
+
+      it 'returns true' do
+        expect(game).to be_winner('X')
+      end
+    end
+
+    context 'when the bottom row has a winning pattern' do
+      let(:grid) do
+        [['X', ' ', 'X'],
+         ['O', 'X', 'X'],
+         ['O', 'O', 'O']]
+      end
+
+      before do
+        game.instance_variable_set(:@grid, grid)
+      end
+
+      it 'returns true' do
+        expect(game).to be_winner('O')
+      end
+    end
+
+    context 'when the left column has a winning pattern' do
+      let(:grid) do
+        [['O', ' ', 'X'],
+         ['O', 'X', 'X'],
+         ['O', 'X', 'O']]
+      end
+
+      before do
+        game.instance_variable_set(:@grid, grid)
+      end
+
+      it 'returns true' do
+        expect(game).to be_winner('O')
+      end
+    end
+
+    context 'when the middle column has a winning pattern' do
+      let(:grid) do
+        [['O', 'X', 'X'],
+         [' ', 'X', ' '],
+         ['O', 'X', 'O']]
+      end
+
+      before do
+        game.instance_variable_set(:@grid, grid)
+      end
+
+      it 'returns true' do
+        expect(game).to be_winner('X')
+      end
+    end
+
+    context 'when the right column has a winning pattern' do
+      let(:grid) do
+        [['X', ' ', 'O'],
+         ['X', 'X', 'O'],
+         ['O', 'X', 'O']]
+      end
+
+      before do
+        game.instance_variable_set(:@grid, grid)
+      end
+
+      it 'returns true' do
+        expect(game).to be_winner('O')
+      end
+    end
+
+    context 'when the upward diagonal has a winning pattern' do
+      let(:grid) do
+        [['O', 'O', 'X'],
+         [' ', 'X', ' '],
+         ['X', 'X', 'O']]
+      end
+
+      before do
+        game.instance_variable_set(:@grid, grid)
+      end
+
+      it 'returns true' do
+        expect(game).to be_winner('X')
+      end
+    end
+
+    context 'when the downward diagonal has a winning pattern' do
+      let(:grid) do
+        [['O', ' ', 'X'],
+         [' ', 'O', ' '],
+         ['X', 'X', 'O']]
+      end
+
+      before do
+        game.instance_variable_set(:@grid, grid)
+      end
+
+      it 'returns true' do
+        expect(game).to be_winner('O')
+      end
+    end
+  end
 end
