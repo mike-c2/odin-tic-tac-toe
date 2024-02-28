@@ -215,4 +215,30 @@ describe TicTacToe do
       end
     end
   end
+
+  describe '#more_choices_remaining?' do
+    context 'when there are no choices remaining' do
+      let(:no_choices) { [] }
+
+      before do
+        game.instance_variable_set(:@valid_choices, no_choices)
+      end
+
+      it 'returns false' do
+        expect(game).not_to be_more_choices_remaining
+      end
+    end
+
+    context 'when there are choices remaining' do
+      let(:choices) { %w[A1] }
+
+      before do
+        game.instance_variable_set(:@valid_choices, choices)
+      end
+
+      it 'returns true' do
+        expect(game).to be_more_choices_remaining
+      end
+    end
+  end
 end
